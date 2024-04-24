@@ -1,0 +1,19 @@
+;Add 5 numbers using DPTR
+ORG 0000H
+	MOV R0, #0
+	MOV DPTR, #MYDATA
+		LOOP: CLR A
+			MOVC A, @ A+DPTR
+			JZ H	
+			ADD A, R0
+			MOV R0, A	
+			INC DPTR
+			JNC LOOP
+			INC R1
+			SJMP LOOP	
+	
+	H: MOV A, R0
+	
+ORG 0300H
+	MYDATA: DB 92H, 23H, 66H, 87H, 0F5H, 0
+END
